@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "created_at": "2025-11-03T07:05:21.120755",
+    "last_updated": "2025-11-03T07:05:21.120810",
+    "total_messages": 1
+  },
+  "conversation_history": [
+    {
+      "role": "user",
+      "content": "Test message",
+      "timestamp": "2025-11-03T07:05:21.120806",
+      "id": 1
+    }
+  ]
+}
