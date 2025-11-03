@@ -20,11 +20,11 @@
 - [ ] docker-compose.aynaghor.yml for UI deployment
 - [ ] Application generation script functional
 
-## OpenHands Integration
-- [ ] OpenHands platform connected to repository
-- [ ] Docker execution environment configured
-- [ ] Health endpoint accessible at http://localhost:3000/status
-- [ ] Agent API responding correctly
+## Application Framework Integration
+- [ ] Streamlit application framework configured
+- [ ] AI provider integration (Gemini/Local AI) set up
+- [ ] Application accessible at http://localhost:8501
+- [ ] Core engine and modules responding correctly
 
 ## Application Generation and Deployment
 - [ ] Generation script executed successfully
