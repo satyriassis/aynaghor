@@ -1,28 +1,6 @@
 
-# Core Dependencies
 fastapi==0.110.*
 uvicorn[standard]==0.27.*
 streamlit==1.38.*
 python-dotenv==1.0.*
-requests==2.32.*
-
-# AI and ML Dependencies
-# Optional: Install as needed based on your setup
-
-# For Google Gemini API (required if USE_GEMINI=true)
-# google-generativeai>=0.3.0
-
-# For Voice Processing (optional)
-# openai-whisper>=20231117
-# gtts>=2.4.0
-
-# For Image Processing (optional)
-# pillow>=10.0.0
-# diffusers>=0.24.0
-# torch>=2.0.0
-# transformers>=4.35.0
-
-# For Enhanced Features (optional)
-# opencv-python>=4.8.0
-# matplotlib>=3.7.0
-# numpy>=1.24.0
+# optional – will be installed later by the agent when needed
