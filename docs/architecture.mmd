@@ -1,41 +1,36 @@
 graph TD;
-    OpenHands[OpenHands Platform] -->|hosts| Agent[KH4NK1 AI‑Agent];
-    Agent -->|generates| Workspace[workspace/aynaghor/];
-    Agent -->|executes| Shell[Shell Commands];
+    User[User Interface] -->|submits prompts| Engine[Core Engine];
+    Engine -->|routes requests| Gemini[Google Gemini API];
+    Engine -->|routes requests| LocalAI[Local AI Models];
 
-    Workspace --> Core[core/engine.py];
-    Workspace --> Modules[modules/];
-    Workspace --> UI[ui/app.py];
+    Engine -->|manages| Memory[Conversation Memory];
+    Engine -->|coordinates| Voice[Voice Processing];
+    Engine -->|coordinates| Image[Image Processing];
 
-    Core --> Gemini[Gemini API];
-    Core --> LocalAI[Local GGUF Model];
+    Memory --> JSON[JSON Storage];
+    Voice --> Whisper[Whisper/GTTS];
+    Image --> Pillow[Pillow/Diffusers];
 
-    Modules --> Voice[voice.py - Whisper/GTTS];
-    Modules --> Image[image.py - Pillow/Diffusers];
-    Modules --> Memory[memory.py - JSON Store];
+    UI[Streamlit UI] --> Engine;
+    Config[Environment Config] --> Engine;
 
-    UI --> Core;
-
-    subgraph "Security Layer"
-        Whitelist[sudo_whitelist.py];
-        Audit[Audit Logging];
-        RateLimit[Rate Limiting];
+    subgraph "Application Services"
+        Streamlit[Streamlit:8501];
+        CoreAPI[Core Engine API];
     end
 
-    Agent --> Security[Security Layer];
-    Security --> Whitelist;
-    Security --> Audit;
-    Security --> RateLimit;
+    UI --> Streamlit;
+    Engine --> CoreAPI;
 
-    subgraph "Docker Services"
-        Service1[kh4nk1-agent:3000];
-        Service2[aynaghor-app:8501];
+    subgraph "External Services"
+        GeminiAPI[Gemini API];
+        LocalAISvc[Local AI Service];
     end
 
-    Agent --> Service1;
-    UI --> Service2;
+    Gemini --> GeminiAPI;
+    LocalAI --> LocalAISvc;
 
-    style OpenHands fill:#e1f5fe
-    style Agent fill:#f3e5f5
-    style Workspace fill:#e8f5e8
-    style Security fill:#fff3e0
+    style User fill:#e1f5fe
+    style Engine fill:#f3e5f5
+    style UI fill:#e8f5e8
+    style Memory fill:#fff3e0
