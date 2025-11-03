@@ -83,28 +83,28 @@
 - [ ] Audit logging operational
 - [ ] Documentation up‑to‑date and complete
 
-## OpenHands Execution Instructions
-1. Upload this repository to OpenHands platform
-2. Configure Docker execution environment
-3. Execute deployment sequence:
+## Application Setup Instructions
+1. Install Python dependencies
    ```bash
-   # Start agent
-   docker compose -f KH4NK1/docker-compose.yml up -d --build
-
-   # Verify agent health
-   curl http://localhost:3000/status
-
-   # Generate application
-   ./KH4NK1/kh4nk1-cli '{"action":"create_file","parameters":{"path":"KH4NK1/agent/scripts/generate_aynaghor.py","content":"...}}'
-   ./KH4NK1/kh4nk1-cli '{"action":"run_shell","parameters":{"command":"python /app/agent/scripts/generate_aynaghor.py"}}'
-
-   # Start application
-   docker compose -f KH4NK1/docker-compose.yml -f KH4NK1/docker-compose.aynaghor.yml up -d --build
-
-   # Access UI at http://localhost:8501
+   pip install -r requirements.txt
    ```
 
-**If any step fails, re‑run the corresponding task number from the main plan.**
+2. Configure environment settings
+   ```bash
+   cp .env.example .env
+   # Edit .env with your API keys and preferences
+   ```
+
+3. Run the application
+   ```bash
+   streamlit run ui/app.py --server.port=8501
+   ```
+
+4. Access the UI at http://localhost:8501
+
+**For Google Gemini integration:** Set USE_GEMINI=true and provide GEMINI_KEY in .env file
+
+**For Local AI integration:** Configure LLM_HOST in .env file to point to your local AI service
 
 ## Contact and Support
 - Repository: https://github.com/bourne2kill/aynaghor
