@@ -1,0 +1,41 @@
+graph TD;
+    OpenHands[OpenHands Platform] -->|hosts| Agent[KH4NK1 AI‑Agent];
+    Agent -->|generates| Workspace[workspace/aynaghor/];
+    Agent -->|executes| Shell[Shell Commands];
+
+    Workspace --> Core[core/engine.py];
+    Workspace --> Modules[modules/];
+    Workspace --> UI[ui/app.py];
+
+    Core --> Gemini[Gemini API];
+    Core --> LocalAI[Local GGUF Model];
+
+    Modules --> Voice[voice.py - Whisper/GTTS];
+    Modules --> Image[image.py - Pillow/Diffusers];
+    Modules --> Memory[memory.py - JSON Store];
+
+    UI --> Core;
+
+    subgraph "Security Layer"
+        Whitelist[sudo_whitelist.py];
+        Audit[Audit Logging];
+        RateLimit[Rate Limiting];
+    end
+
+    Agent --> Security[Security Layer];
+    Security --> Whitelist;
+    Security --> Audit;
+    Security --> RateLimit;
+
+    subgraph "Docker Services"
+        Service1[kh4nk1-agent:3000];
+        Service2[aynaghor-app:8501];
+    end
+
+    Agent --> Service1;
+    UI --> Service2;
+
+    style OpenHands fill:#e1f5fe
+    style Agent fill:#f3e5f5
+    style Workspace fill:#e8f5e8
+    style Security fill:#fff3e0
